@@ -17,7 +17,7 @@ class ItemsTab extends StatelessWidget {
             child: Row(
               children: [
                 const Text(
-                  'Items',
+                  'Hello',
                   style: TextStyle(
                     color: Colors.white,
                     fontSize: 25,
