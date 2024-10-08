@@ -17,6 +17,7 @@ class HomeCubit extends Cubit<HomeState> {
       date: 'Jan 16 - Jan 20, 2024',
       nights: '',
       image: AppImages.pic1,
+      isWithSix: true,
     ),
     TripModel(
       status: 'Pending Approval',
@@ -24,6 +25,7 @@ class HomeCubit extends Cubit<HomeState> {
       date: 'Jan 16 - Jan 20, 2024',
       nights: '5 Nights',
       image: AppImages.pic2,
+      isWithSix: false,
     ),
     TripModel(
       status: 'Pending Approval',
@@ -31,6 +33,7 @@ class HomeCubit extends Cubit<HomeState> {
       date: 'Jan 16 - Jan 20, 2024',
       nights: '5 Nights',
       image: AppImages.pic3,
+      isWithSix: true,
     ),
     TripModel(
       status: 'Pending Approval',
@@ -38,6 +41,7 @@ class HomeCubit extends Cubit<HomeState> {
       date: 'Jan 16 - Jan 20, 2024',
       nights: '5 Nights',
       image: AppImages.pic2,
+      isWithSix: true,
     ),
     TripModel(
       status: 'Pending Approval',
@@ -45,6 +49,7 @@ class HomeCubit extends Cubit<HomeState> {
       date: 'Jan 16 - Jan 20, 2024',
       nights: '5 Nights',
       image: AppImages.pic1,
+      isWithSix: true,
     ),
     TripModel(
       status: 'Pending Approval',
@@ -52,6 +57,7 @@ class HomeCubit extends Cubit<HomeState> {
       date: 'Jan 16 - Jan 20, 2024',
       nights: '5 Nights',
       image: AppImages.pic2,
+      isWithSix: true,
     ),
     TripModel(
       status: 'Pending Approval',
@@ -59,6 +65,7 @@ class HomeCubit extends Cubit<HomeState> {
       date: 'Jan 16 - Jan 20, 2024',
       nights: '5 Nights',
       image: AppImages.pic1,
+      isWithSix: true,
     ),
     TripModel(
       status: 'Pending Approval',
@@ -66,6 +73,7 @@ class HomeCubit extends Cubit<HomeState> {
       date: 'Jan 16 - Jan 20, 2024',
       nights: '5 Nights',
       image: AppImages.pic2,
+      isWithSix: true,
     ),
   ];
 

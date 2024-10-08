@@ -13,7 +13,7 @@ class TripCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: 290,
+      width: 280,
       height: 370,
       margin: const EdgeInsets.only(bottom: 10),
       decoration: BoxDecoration(
@@ -33,7 +33,7 @@ class TripCard extends StatelessWidget {
           children: [
             // Background Image
             Container(
-              height: 210,
+              height: 190,
               decoration: BoxDecoration(
                 image: DecorationImage(
                   image: AssetImage(tripModel.image
@@ -44,7 +44,7 @@ class TripCard extends StatelessWidget {
             ),
             // Gradient Overlay
             Container(
-              height: 210,
+              height: 190,
               decoration: const BoxDecoration(
                 gradient: LinearGradient(
                   colors: [
@@ -77,7 +77,7 @@ class TripCard extends StatelessWidget {
                     ),
                   ),
                   Positioned(
-                    bottom: 18,
+                    bottom: 10,
                     left: 0,
                     right: 0,
                     child: Column(
@@ -93,7 +93,7 @@ class TripCard extends StatelessWidget {
                             borderRadius: BorderRadius.circular(
                                 20), // Rounded edges to make the pill shape
                             border: Border.all(
-                              color: Colors.orange
+                              color: Colors.orange.shade800
                                   .withOpacity(0.5), // Border color
                               width: 1, // Border width
                             ),
@@ -120,7 +120,7 @@ class TripCard extends StatelessWidget {
                             ],
                           ),
                         ),
-                        const SizedBox(height: 4),
+                        const SizedBox(height: 15),
                         const Row(
                           children: [
                             Flexible(
@@ -141,8 +141,8 @@ class TripCard extends StatelessWidget {
                           children: [
                             Image.asset(
                               AppImages.calendar,
-                              width: 25,
-                              height: 25,
+                              width: 30,
+                              height: 30,
                             ),
                             const SizedBox(width: 4),
                             const Flexible(
@@ -151,7 +151,7 @@ class TripCard extends StatelessWidget {
                                 style: TextStyle(
                                   color: Colors.white54,
                                   overflow: TextOverflow.ellipsis,
-                                  fontSize: 14,
+                                  fontSize: 12,
                                 ),
                               ),
                             ),
@@ -163,7 +163,7 @@ class TripCard extends StatelessWidget {
                           thickness: 0.2,
                         ),
                         const SizedBox(height: 10),
-                        const Row(
+                        Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             Row(
@@ -172,14 +172,14 @@ class TripCard extends StatelessWidget {
                                   width: 80,
                                   child: Stack(
                                     children: [
-                                      CircleAvatar(
+                                      const CircleAvatar(
                                         radius: 14,
                                         backgroundImage: AssetImage(
                                           AppImages.person1,
                                         ), // Replace with your user image path
                                       ),
-                                      Positioned(
-                                        left: 11,
+                                      const Positioned(
+                                        left: 15,
                                         child: CircleAvatar(
                                           radius: 14,
                                           backgroundImage: AssetImage(
@@ -187,37 +187,42 @@ class TripCard extends StatelessWidget {
                                           ), // Replace with your user image path
                                         ),
                                       ),
-                                      Positioned(
-                                        left: 24,
-                                        child: CircleAvatar(
-                                          radius: 14,
-                                          backgroundImage: AssetImage(
-                                            AppImages.person3,
-                                          ), // Replace with your user image path
-                                        ),
-                                      ),
-                                      Positioned(
-                                        left: 36,
-                                        child: CircleAvatar(
-                                          radius: 14,
-                                          backgroundColor: Color(0xFF262626),
-                                          child: Text(
-                                            '+6',
-                                            style: TextStyle(
-                                              color: Colors.orange,
-                                              fontSize: 9,
-                                              fontWeight: FontWeight.bold,
-                                            ),
-                                          ), // Replace with your user image path
-                                        ),
-                                      ),
+                                      tripModel.isWithSix!
+                                          ? const Positioned(
+                                              left: 30,
+                                              child: CircleAvatar(
+                                                radius: 14,
+                                                backgroundImage: AssetImage(
+                                                  AppImages.person3,
+                                                ), // Replace with your user image path
+                                              ),
+                                            )
+                                          : const SizedBox.shrink(),
+                                      tripModel.isWithSix!
+                                          ? const Positioned(
+                                              left: 45,
+                                              child: CircleAvatar(
+                                                radius: 14,
+                                                backgroundColor:
+                                                    Color(0xFF262626),
+                                                child: Text(
+                                                  '+6',
+                                                  style: TextStyle(
+                                                    color: Colors.orange,
+                                                    fontSize: 9,
+                                                    fontWeight: FontWeight.bold,
+                                                  ),
+                                                ), // Replace with your user image path
+                                              ),
+                                            )
+                                          : const SizedBox.shrink(),
                                     ],
                                   ),
                                 ),
                               ],
                             ),
-                            SizedBox(width: 4),
-                            Text(
+                            const SizedBox(width: 4),
+                            const Text(
                               '4 unfinished tasks',
                               style: TextStyle(
                                 color: Colors.white54,

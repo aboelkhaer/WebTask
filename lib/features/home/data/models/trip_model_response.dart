@@ -4,6 +4,7 @@ class TripModel {
   final String? date;
   final String? image;
   final String? nights;
+  final bool? isWithSix;
 
   TripModel({
     required this.status,
@@ -11,5 +12,6 @@ class TripModel {
     required this.date,
     required this.image,
     required this.nights,
+    required this.isWithSix,
   });
 }

@@ -12,12 +12,12 @@ class ItemsTab extends StatelessWidget {
       child: Column(
         children: [
           Container(
-            height: 65,
+            height: 100,
             margin: const EdgeInsets.symmetric(horizontal: 80),
             child: Row(
               children: [
                 const Text(
-                  'Hello',
+                  'Items',
                   style: TextStyle(
                     color: Colors.white,
                     fontSize: 25,
@@ -37,7 +37,8 @@ class ItemsTab extends StatelessWidget {
                       child: Image.asset(AppImages.sliders),
                     ),
                     const Padding(
-                      padding: EdgeInsets.symmetric(vertical: 15),
+                      padding:
+                          EdgeInsets.symmetric(vertical: 30, horizontal: 10),
                       child: VerticalDivider(
                         color: Colors.white12,
                       ),
@@ -80,9 +81,12 @@ class ItemsTab extends StatelessWidget {
           ),
           const SizedBox(height: 10),
           Container(
-            margin: const EdgeInsets.symmetric(horizontal: 60),
+            margin: const EdgeInsets.symmetric(horizontal: 80),
+            width: double.infinity,
+            // color: Colors.red,
             child: Wrap(
               spacing: 16,
+              alignment: WrapAlignment.start,
               runSpacing: 10,
               children: List.generate(
                 cubit.trips.length,
