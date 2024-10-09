@@ -10,99 +10,89 @@ class HomeHeader extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // Determine the horizontal margin based on the screen width
+    double horizontalMargin =
+        MediaQuery.of(context).size.width > 600 ? 80.0 : 16.0;
+
     return Container(
       height: 77,
-      margin: const EdgeInsets.symmetric(horizontal: 80),
+      margin:
+          EdgeInsets.symmetric(horizontal: horizontalMargin), // Dynamic margin
       width: double.infinity,
-      decoration: const BoxDecoration(
-          // color: Colors.red,
-
-          ),
       child: Row(
+        crossAxisAlignment: CrossAxisAlignment.center,
         children: [
+          // Show drawer icon only on mobile views
+          if (MediaQuery.of(context).size.width <= 600) ...[
+            const Row(
+              children: [
+                Icon(Icons.menu, color: Colors.white),
+                SizedBox(
+                  width: 16,
+                )
+              ],
+            ),
+          ],
           Image.asset(
             AppImages.appLogo,
             width: 70,
           ),
           const Spacer(),
-          BlocBuilder<HomeCubit, HomeState>(
-            builder: (context, state) {
-              return state.maybeWhen(
-                orElse: () {
-                  return Row(
-                    children: [
-                      HomeTabs(
-                        isChecked: true,
-                        title: 'Items',
-                        onTap: () {},
-                      ),
-                      HomeTabs(
-                        isChecked: false,
-                        title: 'Pricing',
-                        onTap: () {},
-                      ),
-                      HomeTabs(
-                        isChecked: false,
-                        title: 'Info',
-                        onTap: () {},
-                      ),
-                      HomeTabs(
-                        isChecked: false,
-                        title: 'Tasks',
-                        onTap: () {},
-                      ),
-                      HomeTabs(
-                        isChecked: false,
-                        title: 'Analytics',
-                        onTap: () {},
-                      ),
-                    ],
-                  );
-                },
-                loaded: (homeTabIndex) {
-                  return Row(
-                    children: [
-                      HomeTabs(
-                        isChecked: homeTabIndex == 0 ? true : false,
-                        title: 'Items',
-                        onTap: () {
-                          cubit.changeHomeIndex(0);
-                        },
-                      ),
-                      HomeTabs(
-                        isChecked: homeTabIndex == 1 ? true : false,
-                        title: 'Pricing',
-                        onTap: () {
-                          cubit.changeHomeIndex(1);
-                        },
-                      ),
-                      HomeTabs(
-                        isChecked: homeTabIndex == 2 ? true : false,
-                        title: 'Info',
-                        onTap: () {
-                          cubit.changeHomeIndex(2);
-                        },
-                      ),
-                      HomeTabs(
-                        isChecked: homeTabIndex == 3 ? true : false,
-                        title: 'Tasks',
-                        onTap: () {
-                          cubit.changeHomeIndex(3);
-                        },
-                      ),
-                      HomeTabs(
-                        isChecked: homeTabIndex == 4 ? true : false,
-                        title: 'Analytics',
-                        onTap: () {
-                          cubit.changeHomeIndex(4);
-                        },
-                      ),
-                    ],
-                  );
-                },
-              );
-            },
-          ),
+          // Show tabs only on larger screens (desktop only)
+          if (MediaQuery.of(context).size.width > 600) ...[
+            BlocBuilder<HomeCubit, HomeState>(
+              builder: (context, state) {
+                return state.maybeWhen(
+                  orElse: () {
+                    return _buildTabs(true);
+                  },
+                  loaded: (homeTabIndex) {
+                    return _buildTabs(false, homeTabIndex);
+                  },
+                );
+              },
+            ),
+          ],
+
+          if (MediaQuery.of(context).size.width < 600) ...[
+            SizedBox(width: 3.w),
+            Image.asset(
+              AppImages.setting,
+              width: 24,
+              height: 24,
+              color: Colors.white,
+            ),
+            const SizedBox(width: 10),
+            Image.asset(
+              AppImages.notification,
+              width: 24,
+              height: 24,
+              color: Colors.white,
+            ),
+          ],
+
+          if (MediaQuery.of(context).size.width > 900) ...[
+            const Padding(
+              padding: EdgeInsets.symmetric(vertical: 25),
+              child: VerticalDivider(
+                thickness: 0.26,
+              ),
+            ),
+            SizedBox(width: 3.w),
+            Image.asset(
+              AppImages.setting,
+              width: 24,
+              height: 24,
+              color: Colors.white,
+            ),
+            SizedBox(width: 3.w),
+            Image.asset(
+              AppImages.notification,
+              width: 24,
+              height: 24,
+              color: Colors.white,
+            ),
+          ],
           const Padding(
             padding: EdgeInsets.symmetric(vertical: 25),
             child: VerticalDivider(
@@ -110,32 +100,6 @@ class HomeHeader extends StatelessWidget {
             ),
           ),
           SizedBox(width: 3.w),
-          Image.asset(
-            AppImages.setting,
-            width: 24,
-            height: 24,
-          ),
-          SizedBox(width: 3.w),
-          Image.asset(
-            AppImages.notification,
-            width: 24,
-            height: 24,
-          ),
-          SizedBox(width: 3.w),
-          const Padding(
-            padding: EdgeInsets.symmetric(vertical: 25),
-            child: VerticalDivider(
-              thickness: 0.26,
-            ),
-          ),
-          SizedBox(width: 3.w),
-          // CircleAvatar(
-          //   radius: 15,
-          //   backgroundColor: AppColors.primary,
-          //   child: Image.asset(
-          //     AppImages.profile,
-          //   ),
-          // ),
           const CircleAvatar(
             radius: 18,
             backgroundImage: AssetImage(
@@ -144,21 +108,67 @@ class HomeHeader extends StatelessWidget {
             backgroundColor: Colors.transparent,
           ),
           SizedBox(width: 3.w),
-          const Text(
-            'John Doe',
-            style: TextStyle(
-              color: Colors.white,
-              fontSize: 13,
+          // Show user name only on larger screens
+          if (MediaQuery.of(context).size.width > 900) ...[
+            const Text(
+              'John Doe',
+              style: TextStyle(
+                color: Colors.white,
+                fontSize: 13,
+              ),
             ),
-          ),
-          SizedBox(width: 2.w),
-          Image.asset(
-            AppImages.downArrow,
-            width: 16,
-            height: 16,
-          ),
+            SizedBox(width: 2.w),
+            Image.asset(
+              AppImages.downArrow,
+              width: 16,
+              height: 16,
+            ),
+          ],
         ],
       ),
+    );
+  }
+
+  // Method to build the tabs
+  Row _buildTabs(bool isDefaultState, [int homeTabIndex = 0]) {
+    return Row(
+      children: [
+        HomeTabs(
+          isChecked: isDefaultState ? true : homeTabIndex == 0,
+          title: 'Items',
+          onTap: () {
+            cubit.changeHomeIndex(0);
+          },
+        ),
+        HomeTabs(
+          isChecked: isDefaultState ? false : homeTabIndex == 1,
+          title: 'Pricing',
+          onTap: () {
+            cubit.changeHomeIndex(1);
+          },
+        ),
+        HomeTabs(
+          isChecked: isDefaultState ? false : homeTabIndex == 2,
+          title: 'Info',
+          onTap: () {
+            cubit.changeHomeIndex(2);
+          },
+        ),
+        HomeTabs(
+          isChecked: isDefaultState ? false : homeTabIndex == 3,
+          title: 'Tasks',
+          onTap: () {
+            cubit.changeHomeIndex(3);
+          },
+        ),
+        HomeTabs(
+          isChecked: isDefaultState ? false : homeTabIndex == 4,
+          title: 'Analytics',
+          onTap: () {
+            cubit.changeHomeIndex(4);
+          },
+        ),
+      ],
     );
   }
 }

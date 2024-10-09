@@ -1,56 +1,65 @@
+import 'package:google_fonts/google_fonts.dart';
 import 'package:web_app_task/features/home/data/models/trip_model_response.dart';
 
 import '../../../../../../exports.dart';
 
 class TripCard extends StatelessWidget {
   final TripModel tripModel;
+  final double cardWidth;
+  final bool isMobile;
 
   const TripCard({
     super.key,
     required this.tripModel,
+    required this.cardWidth,
+    required this.isMobile,
   });
 
   @override
   Widget build(BuildContext context) {
+    // Adjust card height based on screen size
+    double cardHeight = isMobile ? cardWidth * 0.8 : cardWidth * 1.1;
+
     return Container(
-      width: 280,
-      height: 370,
+      width: cardWidth,
+      height: cardHeight,
       margin: const EdgeInsets.only(bottom: 10),
       decoration: BoxDecoration(
         color: const Color(0xFF262626),
-        borderRadius: BorderRadius.circular(8), // Rounded corners
-        boxShadow: const [
-          BoxShadow(
-            color: AppColors.primary,
-            blurRadius: 10,
-            offset: Offset(0, 4), // Adjust shadow position
-          ),
-        ],
+        borderRadius: BorderRadius.circular(8),
       ),
       child: ClipRRect(
         borderRadius: BorderRadius.circular(8),
         child: Stack(
           children: [
             // Background Image
-            Container(
-              height: 190,
-              decoration: BoxDecoration(
-                image: DecorationImage(
-                  image: AssetImage(tripModel.image
-                      .toString()), // Replace with your image path
-                  fit: BoxFit.cover,
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.end,
+              children: [
+                Center(
+                  child: Container(
+                    height: cardHeight * 0.5,
+                    width: cardWidth - 1,
+                    decoration: BoxDecoration(
+                      image: DecorationImage(
+                        image: AssetImage(tripModel.image!),
+                        fit: BoxFit.cover,
+                      ),
+                    ),
+                  ),
                 ),
-              ),
+              ],
             ),
             // Gradient Overlay
             Container(
-              height: 190,
+              height: cardHeight * 0.51, // Same height as the image
+              width: cardWidth,
               decoration: const BoxDecoration(
                 gradient: LinearGradient(
                   colors: [
                     Color(0xFF262626),
-                    Colors.transparent
-                  ], // Gradient overlay
+                    Colors.transparent,
+                  ],
                   begin: Alignment.bottomCenter,
                   end: Alignment.topCenter,
                 ),
@@ -85,74 +94,64 @@ class TripCard extends StatelessWidget {
                       children: [
                         Container(
                           padding: const EdgeInsets.symmetric(
-                              horizontal: 10,
-                              vertical: 2), // Padding inside the button
+                              horizontal: 10, vertical: 2),
                           decoration: BoxDecoration(
-                            color: Colors
-                                .transparent, // Dark background with opacity
-                            borderRadius: BorderRadius.circular(
-                                20), // Rounded edges to make the pill shape
+                            color: Colors.transparent,
+                            borderRadius: BorderRadius.circular(20),
                             border: Border.all(
-                              color: Colors.orange.shade800
-                                  .withOpacity(0.5), // Border color
-                              width: 1, // Border width
+                              color: Colors.orange.shade800.withOpacity(0.5),
+                              width: 1,
                             ),
                           ),
                           child: Row(
-                            mainAxisSize: MainAxisSize
-                                .min, // To make sure the button takes only as much space as needed
+                            mainAxisSize: MainAxisSize.min,
                             children: [
-                              const Text(
-                                'Pending Approval',
-                                style: TextStyle(
-                                  color: Colors.white,
-                                  fontSize: 18,
-                                  fontWeight: FontWeight.w100,
-                                ),
+                              Flexible(
+                                child: Text('Pending Approval',
+                                    style: GoogleFonts.inter(
+                                      color: Colors.white,
+                                      fontSize: 18,
+                                      fontWeight: FontWeight.w200,
+                                    )),
                               ),
-                              const SizedBox(
-                                  width: 8), // Space between text and icon
+                              const SizedBox(width: 8),
                               Image.asset(
                                 AppImages.downArrow,
-                                width: 8,
-                                height: 8,
+                                width: 10,
+                                height: 10,
                               ),
                             ],
                           ),
                         ),
                         const SizedBox(height: 15),
-                        const Row(
-                          children: [
-                            Flexible(
-                              child: Text(
-                                'Long item Long item title highlighti Loan Lorem',
-                                style: TextStyle(
-                                  color: Colors.white,
-                                  overflow: TextOverflow.ellipsis,
-                                  fontSize: 18,
-                                  fontWeight: FontWeight.w400,
-                                ),
-                              ),
-                            ),
-                          ],
+                        Text(
+                          tripModel.title.toString(),
+                          style: const TextStyle(
+                            color: Colors.white,
+                            overflow: TextOverflow.ellipsis,
+                            fontSize: 18,
+                            fontWeight: FontWeight.w400,
+                          ),
+                          maxLines: 1,
                         ),
                         const SizedBox(height: 8),
                         Row(
                           children: [
                             Image.asset(
                               AppImages.calendar,
-                              width: 30,
-                              height: 30,
+                              width: 25,
+                              height: 25,
                             ),
-                            const SizedBox(width: 4),
-                            const Flexible(
+                            const SizedBox(width: 2),
+                            Flexible(
                               child: Text(
-                                '5 Nights (Jan 16 - Jan 20, 2024)',
-                                style: TextStyle(
+                                tripModel.date.toString(),
+                                style: const TextStyle(
                                   color: Colors.white54,
                                   overflow: TextOverflow.ellipsis,
                                   fontSize: 12,
                                 ),
+                                maxLines: 1,
                               ),
                             ),
                           ],
@@ -175,16 +174,14 @@ class TripCard extends StatelessWidget {
                                       const CircleAvatar(
                                         radius: 14,
                                         backgroundImage: AssetImage(
-                                          AppImages.person1,
-                                        ), // Replace with your user image path
+                                            'assets/images/person1.png'),
                                       ),
                                       const Positioned(
                                         left: 15,
                                         child: CircleAvatar(
                                           radius: 14,
                                           backgroundImage: AssetImage(
-                                            AppImages.person2,
-                                          ), // Replace with your user image path
+                                              'assets/images/person2.png'),
                                         ),
                                       ),
                                       tripModel.isWithSix!
@@ -193,26 +190,26 @@ class TripCard extends StatelessWidget {
                                               child: CircleAvatar(
                                                 radius: 14,
                                                 backgroundImage: AssetImage(
-                                                  AppImages.person3,
-                                                ), // Replace with your user image path
+                                                    'assets/images/person3.png'),
                                               ),
                                             )
                                           : const SizedBox.shrink(),
                                       tripModel.isWithSix!
-                                          ? const Positioned(
+                                          ? Positioned(
                                               left: 45,
                                               child: CircleAvatar(
                                                 radius: 14,
                                                 backgroundColor:
-                                                    Color(0xFF262626),
+                                                    const Color(0xFF262626),
                                                 child: Text(
                                                   '+6',
-                                                  style: TextStyle(
-                                                    color: Colors.orange,
-                                                    fontSize: 9,
-                                                    fontWeight: FontWeight.bold,
+                                                  style: GoogleFonts.inter(
+                                                    color:
+                                                        const Color(0xFFFFC268),
+                                                    fontSize: 10,
+                                                    fontWeight: FontWeight.w400,
                                                   ),
-                                                ), // Replace with your user image path
+                                                ),
                                               ),
                                             )
                                           : const SizedBox.shrink(),
@@ -222,11 +219,14 @@ class TripCard extends StatelessWidget {
                               ],
                             ),
                             const SizedBox(width: 4),
-                            const Text(
-                              '4 unfinished tasks',
-                              style: TextStyle(
-                                color: Colors.white54,
-                                fontSize: 13,
+                            const Flexible(
+                              child: Text(
+                                '4 unfinished tasks',
+                                style: TextStyle(
+                                    color: Colors.white54,
+                                    fontSize: 13,
+                                    overflow: TextOverflow.ellipsis),
+                                maxLines: 1,
                               ),
                             ),
                           ],

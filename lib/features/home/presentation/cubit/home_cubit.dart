@@ -21,8 +21,8 @@ class HomeCubit extends Cubit<HomeState> {
     ),
     TripModel(
       status: 'Pending Approval',
-      title: 'Item title',
-      date: 'Jan 16 - Jan 20, 2024',
+      title: 'Long item Long item title highlighting Loan Lorem',
+      date: '5 Nights (Jan 16 - Jan 20, 2024)',
       nights: '5 Nights',
       image: AppImages.pic2,
       isWithSix: false,
@@ -30,7 +30,7 @@ class HomeCubit extends Cubit<HomeState> {
     TripModel(
       status: 'Pending Approval',
       title: 'Item title',
-      date: 'Jan 16 - Jan 20, 2024',
+      date: '5 Nights (Jan 16 - Jan 20, 2024)',
       nights: '5 Nights',
       image: AppImages.pic3,
       isWithSix: true,
@@ -38,15 +38,7 @@ class HomeCubit extends Cubit<HomeState> {
     TripModel(
       status: 'Pending Approval',
       title: 'Item title',
-      date: 'Jan 16 - Jan 20, 2024',
-      nights: '5 Nights',
-      image: AppImages.pic2,
-      isWithSix: true,
-    ),
-    TripModel(
-      status: 'Pending Approval',
-      title: 'Item title',
-      date: 'Jan 16 - Jan 20, 2024',
+      date: '5 Nights (Jan 16 - Jan 20, 2024)',
       nights: '5 Nights',
       image: AppImages.pic1,
       isWithSix: true,
@@ -54,7 +46,7 @@ class HomeCubit extends Cubit<HomeState> {
     TripModel(
       status: 'Pending Approval',
       title: 'Item title',
-      date: 'Jan 16 - Jan 20, 2024',
+      date: '5 Nights (Jan 16 - Jan 20, 2024)',
       nights: '5 Nights',
       image: AppImages.pic2,
       isWithSix: true,
@@ -62,7 +54,15 @@ class HomeCubit extends Cubit<HomeState> {
     TripModel(
       status: 'Pending Approval',
       title: 'Item title',
-      date: 'Jan 16 - Jan 20, 2024',
+      date: '5 Nights (Jan 16 - Jan 20, 2024)',
+      nights: '5 Nights',
+      image: AppImages.pic3,
+      isWithSix: true,
+    ),
+    TripModel(
+      status: 'Pending Approval',
+      title: 'Item title',
+      date: '5 Nights (Jan 16 - Jan 20, 2024)',
       nights: '5 Nights',
       image: AppImages.pic1,
       isWithSix: true,
@@ -70,7 +70,7 @@ class HomeCubit extends Cubit<HomeState> {
     TripModel(
       status: 'Pending Approval',
       title: 'Item title',
-      date: 'Jan 16 - Jan 20, 2024',
+      date: '5 Nights (Jan 16 - Jan 20, 2024)',
       nights: '5 Nights',
       image: AppImages.pic2,
       isWithSix: true,

@@ -40,6 +40,7 @@ dependencies:
   freezed: ^2.5.7
   freezed_annotation: ^2.4.4
   get_it: ^8.0.0
+  google_fonts: ^6.2.1
   internet_connection_checker: ^1.0.0+1
   json_annotation: ^4.9.0
   lottie: ^3.1.2
@@ -47,12 +48,12 @@ dependencies:
   shimmer: ^3.0.0
 
 dev_dependencies:
-  json_serializable: ^6.7.1
   build_runner: ^2.4.6
-  retrofit_generator: ^8.0.6
   flutter_lints: ^4.0.0
   flutter_test:
     sdk: flutter
+  json_serializable: ^6.7.1
+  retrofit_generator: ^8.0.6
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
